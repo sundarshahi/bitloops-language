@@ -31,7 +31,7 @@ import {
 const feature = loadFeature('__tests__/end-to-end/end-to-end.feature');
 
 defineFeature(feature, (test) => {
-  test('End to end transpile is valid', ({ given, when, then }) => {
+  test.skip('End to end transpile is valid', ({ given, when, then }) => {
     let blString: string;
     let intermediateAST;
     const formatterConfig = null;
