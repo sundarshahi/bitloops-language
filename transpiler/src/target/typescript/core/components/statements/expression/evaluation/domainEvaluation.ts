@@ -26,6 +26,8 @@ export const domainEvaluationToTargetLanguage = (
   evaluation: TDomainEvaluation,
 ): TTargetDependenciesTypeScript => {
   const domainProperties = evaluation.props;
+  console.log('domainProperties', domainProperties);
+  console.log('evaluation', evaluation);
   const domainName = evaluation.name;
 
   let resultDomainProps: TTargetDependenciesTypeScript;
@@ -40,6 +42,7 @@ export const domainEvaluationToTargetLanguage = (
       value: domainProperties,
     });
   }
+  console.log('after');
 
   const dependencies = [...resultDomainProps.dependencies, ...getChildDependencies(domainName)];
 
