@@ -51,6 +51,7 @@ import {
   TStructs,
   TReadModels,
 } from '../../../types.js';
+import { astBuilder } from '../../../utils/Builder.js';
 
 import { aggregateDeclarationVisitor } from './helpers/aggregateDeclarationVisitor.js';
 import { entityBodyVisitor } from './helpers/entityBodyVisitor.js';
@@ -271,10 +272,12 @@ export default class BitloopsVisitor extends BitloopsParserVisitor {
   }
 
   visitIdentifierString(ctx: BitloopsParser.IdentifierStringContext) {
-    return {
-      type: 'variable',
-      value: ctx.Identifier().getText(),
-    };
+    console.log('visit build id')
+    return astBuilder.buildIdentifier( ctx.Identifier().getText());
+    // {
+    //   type: 'variable',
+    //   value: ctx.Identifier().getText(),
+    // };
   }
 
   visitRegularIntegerEvaluation(ctx: BitloopsParser.RegularIntegerEvaluationContext) {
