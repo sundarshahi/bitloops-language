@@ -22,7 +22,7 @@ export class IntermediateASTValidator implements IIntermediateASTValidator {
 
   private validateNodes(ASTTree: IntermediateASTTree): IntermediateASTNodeValidationError[] {
     const errors: IntermediateASTNodeValidationError[] = [];
-    ASTTree.traverse(ASTTree.getRootNode(), (node: IntermediateASTNode) => {
+    ASTTree.traverse(ASTTree.getRootNode(), (node: IntermediateASTNode<any>) => {
       const validationRes = node.validate();
       if (IntermediateASTNode.isIntermediateASTNodeValidationError(validationRes))
         errors.push(validationRes);

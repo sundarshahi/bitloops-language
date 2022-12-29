@@ -11,7 +11,8 @@ const ROOT_METADATA = {
   },
 };
 
-export class IntermediateASTRootNode extends IntermediateASTNode {
+// TODO fix any type here
+export class IntermediateASTRootNode extends IntermediateASTNode<{ Root: any }> {
   private static rootName = 'Root';
 
   constructor() {

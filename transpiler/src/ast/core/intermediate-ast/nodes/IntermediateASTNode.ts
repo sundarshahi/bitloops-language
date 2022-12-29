@@ -16,13 +16,14 @@ export type TNodeType = TBitloopsTypesValues | typeof ROOT_TYPE;
 
 export class IntermediateASTNodeValidationError extends IntermediateASTValidationError {}
 
-export abstract class IntermediateASTNode {
+// eslint-disable-next-line @typescript-eslint/ban-types
+export abstract class IntermediateASTNode<T extends {}> {
   protected nodeType: TNodeType;
-  private children: IntermediateASTNode[];
-  private nextSibling: IntermediateASTNode;
-  private parent: IntermediateASTNode;
+  private children: IntermediateASTNode<T>[];
+  private nextSibling: IntermediateASTNode<T>;
+  private parent: IntermediateASTNode<T>;
   private metaData: TNodeMetadata;
-  private value: any;
+  private value: T;
   protected classNodeName: string;
 
   constructor(nodeType: TNodeType, metadata: TNodeMetadata, classNodeName: string) {
@@ -32,7 +33,7 @@ export abstract class IntermediateASTNode {
     this.classNodeName = classNodeName;
   }
 
-  public getValue(): any {
+  public getValue(): T {
     return this.value;
   }
 
@@ -56,11 +57,11 @@ export abstract class IntermediateASTNode {
     return this.classNodeName;
   }
 
-  public getParent(): IntermediateASTNode {
+  public getParent(): IntermediateASTNode<T> {
     return this.parent;
   }
 
-  public getChildren(): IntermediateASTNode[] {
+  public getChildren(): IntermediateASTNode<T>[] {
     return this.children;
   }
   public isLeaf(): boolean {
@@ -79,11 +80,11 @@ export abstract class IntermediateASTNode {
     this.metaData = metaData;
   }
 
-  private setParent(parent: IntermediateASTNode) {
+  private setParent(parent: IntermediateASTNode<T>) {
     this.parent = parent;
   }
 
-  public addChild(childNode: IntermediateASTNode): void {
+  public addChild(childNode: IntermediateASTNode<any>): void {
     childNode.setParent(this);
     const numOfChildren = this.children.length;
     if (numOfChildren > 0) {
@@ -93,7 +94,7 @@ export abstract class IntermediateASTNode {
     this.children.push(childNode);
   }
 
-  public removeChild(childNode: IntermediateASTNode): void {
+  public removeChild(childNode: IntermediateASTNode<T>): void {
     const index = this.children.indexOf(childNode);
     if (index === -1) throw new Error('Could not find child');
     if (index > 0) {
@@ -104,8 +105,8 @@ export abstract class IntermediateASTNode {
   }
 
   public replaceChild(
-    childNodeTobeReplaced: IntermediateASTNode,
-    newChildNode: IntermediateASTNode,
+    childNodeTobeReplaced: IntermediateASTNode<T>,
+    newChildNode: IntermediateASTNode<T>,
   ): void {
     newChildNode.setParent(this);
     const index = this.children.indexOf(childNodeTobeReplaced);
@@ -117,15 +118,15 @@ export abstract class IntermediateASTNode {
     this.children.splice(index, 1, newChildNode);
   }
 
-  private addSibling(siblingNode: IntermediateASTNode): void {
+  private addSibling<L extends T>(siblingNode: IntermediateASTNode<L>): void {
     this.nextSibling = siblingNode;
   }
 
-  public getFirstChild(): IntermediateASTNode {
+  public getFirstChild(): IntermediateASTNode<T> {
     return this.children[0];
   }
 
-  public getNextSibling(): IntermediateASTNode | null {
+  public getNextSibling(): IntermediateASTNode<T> | null {
     return this.nextSibling ?? null;
   }
 
@@ -141,7 +142,7 @@ export abstract class IntermediateASTNode {
     });
   }
 
-  public buildLeafValue(value: any): void {
+  public buildLeafValue(value: T): void {
     this.value = {
       [this.classNodeName]: value,
     };

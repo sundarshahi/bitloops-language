@@ -1,8 +1,9 @@
 import { BitloopsTypesMapping } from '../../../../../../helpers/mappings.js';
+import { TCondition } from '../../../../../../types.js';
 import { ExpressionNode } from '../../Expression/ExpressionNode.js';
 import { IntermediateASTNode, TNodeMetadata } from '../../IntermediateASTNode.js';
 
-export class ConditionNode extends IntermediateASTNode {
+export class ConditionNode extends IntermediateASTNode<TCondition> {
   private static classNodeName = 'condition';
 
   constructor(metadata?: TNodeMetadata) {

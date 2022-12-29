@@ -1,16 +1,15 @@
 import { BitloopsTypesMapping } from '../../../../../helpers/mappings.js';
-import { IntermediateASTIdentifierNode } from '../IntermediateASTIdentifierNode.js';
-import { TNodeMetadata } from '../IntermediateASTNode.js';
+import { TNodeMetadata, IntermediateASTNode } from '../IntermediateASTNode.js';
 import { PropsIdentifierNode } from '../Props/PropsIdentifierNode.js';
-
-export class DomainCreateParameterNode extends IntermediateASTIdentifierNode {
+import { TDomainCreateParameter } from '../../../../../types.js';
+export class DomainCreateParameterNode extends IntermediateASTNode<TDomainCreateParameter> {
   private static classNodeName = 'domainCreateParameter';
 
   constructor(metadata?: TNodeMetadata) {
     super(
       BitloopsTypesMapping.TDomainConstructorParameter,
-      DomainCreateParameterNode.classNodeName,
       metadata,
+      DomainCreateParameterNode.classNodeName,
     );
   }
 

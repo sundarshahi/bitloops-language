@@ -1,9 +1,10 @@
 import { BitloopsTypesMapping } from '../../../../../../helpers/mappings.js';
+import { TPackagePort } from '../../../../../../types.js';
 import { IntermediateASTIdentifierNode } from '../../IntermediateASTIdentifierNode.js';
 import { IntermediateASTNode, TNodeMetadata } from '../../IntermediateASTNode.js';
 import { PackagePortIdentifierNode } from './PackagePortIdentifierNode.js';
 
-export class PackagePortNode extends IntermediateASTNode {
+export class PackagePortNode extends IntermediateASTNode<{ port: TPackagePort }> {
   private static classNodeName = 'port';
 
   constructor(metadata?: TNodeMetadata) {

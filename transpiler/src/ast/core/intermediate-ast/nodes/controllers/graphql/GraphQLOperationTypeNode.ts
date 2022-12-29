@@ -1,7 +1,10 @@
 import { BitloopsTypesMapping } from '../../../../../../helpers/mappings.js';
+import { TGraphQLOperation } from '../../../../../../types.js';
 import { IntermediateASTNode, TNodeMetadata } from '../../IntermediateASTNode.js';
 
-export class GraphQLOperationTypeNode extends IntermediateASTNode {
+export class GraphQLOperationTypeNode extends IntermediateASTNode<{
+  operationType: TGraphQLOperation;
+}> {
   private static classNodeName = 'operationType';
 
   constructor(metadata?: TNodeMetadata) {

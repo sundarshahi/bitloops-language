@@ -1,7 +1,7 @@
 import { BitloopsTypesMapping } from '../../../../../../helpers/mappings.js';
 import { IntermediateASTNode, TNodeMetadata } from '../../IntermediateASTNode.js';
 
-export class GraphQLInputTypeNode extends IntermediateASTNode {
+export class GraphQLInputTypeNode extends IntermediateASTNode<{ inputType: null | string }> {
   private static classNodeName = 'inputType';
 
   constructor(metadata?: TNodeMetadata) {

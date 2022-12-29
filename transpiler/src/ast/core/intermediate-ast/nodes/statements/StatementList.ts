@@ -1,17 +1,18 @@
 import { BitloopsTypesMapping } from '../../../../../helpers/mappings.js';
+import { TStatements } from '../../../../../types.js';
 import { ExpressionNode } from '../Expression/ExpressionNode.js';
 import { IntermediateASTNode, TNodeMetadata } from '../IntermediateASTNode.js';
 import { StatementNode } from './Statement.js';
 
-export class StatementListNode extends IntermediateASTNode {
+export class StatementListNode extends IntermediateASTNode<{ statements: TStatements }> {
   private static classNodeName = 'statements';
 
   constructor(metadata?: TNodeMetadata) {
     super(BitloopsTypesMapping.TStatements, metadata, StatementListNode.classNodeName);
   }
 
-  get statements(): StatementNode[] {
-    return this.getChildren() as StatementNode[];
+  get statements(): any {
+    return this.getChildren();
   }
 
   getExpressionOfDeclaredIdentifier(identifierName: string): ExpressionNode | null {

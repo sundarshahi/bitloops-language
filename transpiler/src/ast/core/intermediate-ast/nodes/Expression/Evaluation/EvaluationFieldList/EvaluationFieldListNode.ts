@@ -1,9 +1,9 @@
 import { BitloopsTypesMapping } from '../../../../../../../helpers/mappings.js';
-import { evaluationFieldsKey } from '../../../../../../../types.js';
+import { TEvaluationFields, evaluationFieldsKey } from '../../../../../../../types.js';
 import { IntermediateASTNode, TNodeMetadata } from '../../../IntermediateASTNode.js';
 import { EvaluationFieldNode } from './EvaluationFieldNode.js';
 
-export class EvaluationFieldListNode extends IntermediateASTNode {
+export class EvaluationFieldListNode extends IntermediateASTNode<{ fields: TEvaluationFields }> {
   constructor(metadata?: TNodeMetadata) {
     super(BitloopsTypesMapping.TEvaluationFields, metadata, evaluationFieldsKey);
   }

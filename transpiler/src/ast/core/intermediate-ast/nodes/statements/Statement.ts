@@ -3,8 +3,9 @@ import { IntermediateASTNode } from '../IntermediateASTNode.js';
 import { VariableDeclarationNode } from '../variableDeclaration.js';
 import { ConstDeclarationNode } from './ConstDeclarationNode.js';
 import { ExpressionNode } from '../Expression/ExpressionNode.js';
+import { TStatement } from '../../../../../types.js';
 
-export abstract class StatementNode extends IntermediateASTNode {
+export abstract class StatementNode extends IntermediateASTNode<TStatement> {
   isConstDeclarationNode(): this is ConstDeclarationNode {
     return this.getNodeType() === BitloopsTypesMapping.TConstDeclaration;
   }

@@ -1,8 +1,9 @@
 import { BitloopsTypesMapping } from '../../../../../helpers/mappings.js';
+import { TEntityValues } from '../../../../../types.js';
 import { DomainCreateNode } from '../Domain/DomainCreateNode.js';
 import { IntermediateASTNode, TNodeMetadata } from '../IntermediateASTNode.js';
 
-export class EntityValuesNode extends IntermediateASTNode {
+export class EntityValuesNode extends IntermediateASTNode<{ entityValues: TEntityValues }> {
   private static classNodeName = 'entityValues';
 
   constructor(metadata?: TNodeMetadata) {

@@ -7,7 +7,9 @@ type TClassTypeNodeParams = {
   metadata: TNodeMetadata;
   classNodeName: string;
 };
-export abstract class ClassTypeNode extends IntermediateASTNode {
+export abstract class ClassTypeNode extends IntermediateASTNode<{
+  [key: string]: TClassTypesValues;
+}> {
   private classType: TClassTypesValues;
   private className: string;
 

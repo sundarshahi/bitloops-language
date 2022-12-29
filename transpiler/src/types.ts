@@ -38,7 +38,6 @@ export type TModule = {
   RepoAdapters?: TRepoAdapters;
   ReadModel?: TReadModel;
 };
-
 // TODO merge with TClassTypesValues from `transpiler/src/helpers/mappings.ts`
 export type TClassType =
   | 'Props'
@@ -1196,6 +1195,9 @@ export type TEqualityExpression = {
 
 export type TEqualityOperator = '==' | '!=';
 
+export type Toperator = {
+  operator: TRelationalOperator | TEqualityOperator | TAdditiveExpression | TMultiplicativeOperator;
+};
 export type TParenthesizedExpression = {
   parenthesizedExpression: TExpression;
 };

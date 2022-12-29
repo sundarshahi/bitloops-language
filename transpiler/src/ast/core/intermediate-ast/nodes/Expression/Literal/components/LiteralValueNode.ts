@@ -3,7 +3,7 @@ import { IntermediateASTNode, TNodeMetadata } from '../../../IntermediateASTNode
 
 const NAME = 'value';
 
-export class LiteralValueNode extends IntermediateASTNode {
+export class LiteralValueNode extends IntermediateASTNode<{ value: string }> {
   constructor(metadata?: TNodeMetadata) {
     super(BitloopsTypesMapping.TLiteralValue, metadata, NAME);
   }
