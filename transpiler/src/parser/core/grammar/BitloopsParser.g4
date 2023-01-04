@@ -827,15 +827,15 @@ serverDeclaration
     ;
 
 serverInstantiationOptions
-    : OpenBrace (serverTypeOption | serverApiPrefixOption| restServerPort)* CloseBrace
+    : OpenBrace (serverTypeOption | serverApiPrefixOption| serverPort)* CloseBrace
     ;
 
-restServerPort 
-    : restServerPortIdentifier Colon expression Comma
+serverPort 
+    : serverPortIdentifier Colon expression Comma
     ;
 
-restServerPortIdentifier: 
-    RestServerPortIdentifier;
+serverPortIdentifier: 
+    ServerPortIdentifier;
 
 
 repoConnectionDefinition
@@ -908,7 +908,7 @@ customServerOption
 // Cover any user defined options
 
 graphQLServerInstantiationOptions
-    : OpenBrace graphQLServerInstantiationOption CloseBrace
+    : OpenBrace serverPort CloseBrace
     ;
 
 graphQLServerInstantiationOption
